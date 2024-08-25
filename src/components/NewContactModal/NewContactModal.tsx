@@ -10,61 +10,51 @@ import {
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { ContactModel as Contact } from "@/models/contact"
 import { useState } from "react";
 import { fetcherPost as post } from "@/util/fetcher";
 import useUserStore from "@/hooks/stores/useUserStore";
 import { toBase64 } from "@/util/toBase64";
 
-export default function EditContactModal({
-  id,
-  email,
-  name,
-  picture,
-  lastContact,
-}: Contact) {
-  const [contact, setContact] = useState({
-    id,
-    email,
-    name,
-    picture,
-    lastContact
+export default function NewContactModal() {
+  const [contact, setContact] = useState<any>({
+    name: '',
+    email: '',
+    picture: '',
   });
   const [file, setFile] = useState<File | null>(null);
   const user = useUserStore((state: any) => state.user);
   const [changesSaved, setChangesSaved] = useState(false);
 
-  const body = {
+  let body: any = {
     userId: user.id,
-    contactId: contact.id,
     name: contact.name,
     email: contact.email,
     picture: contact.picture,
-  }
+  };
 
   const pushChanges = async () => {
     if (!file) {
-      post('/api/contacts/edit', body).then((res) => setChangesSaved(true));
+      post('/api/contacts/new', body).then((res) => setChangesSaved(true));
       return;
     }
 
     const base64Image = await toBase64(file);
     await post('/api/pictures/upload', { base64: base64Image })
       .then(
-        (res) => post('/api/contacts/edit', { ...body, picture: res.url }).then((res) => setChangesSaved(true))
+        (res) => post('/api/contacts/new', { ...body, picture: res.url }).then((res) => setChangesSaved(true))
       );
   };
 
   return (
     <Card className="w-fit">
       <CardHeader>
-        <CardTitle className="text-m">Edit contact</CardTitle>
-        <CardDescription>{`Modify the details of ${name}`}</CardDescription>
+        <CardTitle className="text-m">Create a new contact</CardTitle>
+        <CardDescription>{`Fill the required information`}</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-y-4">
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="name">Full Name</Label>
-          <Input type="text" id="name" defaultValue={name} onChange={(e) => {
+          <Input type="text" id="name" placeholder="Adrian Monk" onChange={(e) => {
             e.preventDefault();
             setContact({
               ...contact,
@@ -83,7 +73,7 @@ export default function EditContactModal({
           }} />
         </div>
         <Button className="w-fit" onClick={async () => await pushChanges()}>
-          Save changes
+          Create
         </Button>
         {changesSaved && <p>Changes saved!</p>}
       </CardContent>

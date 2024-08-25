@@ -10,6 +10,7 @@ export default async function handler(
   const contactId = req.body.contactId;
   const contactEmail = req.body.email;
   const contactName = req.body.name;
+  const contactPicture = req.body.picture;
 
   const result = await prisma.contact.update({
     where: {
@@ -18,7 +19,8 @@ export default async function handler(
     },
     data: {
       email: contactEmail,
-      name: contactName
+      name: contactName,
+      picture: contactPicture,
     }
   });
 

@@ -8,9 +8,9 @@ export default async function handler(
 ) {
   
   const userId = req.body.userId;
-  const contactEmail = req.body.email;
-  const contactName = req.body.name;
-  const contactPicture = req.body.picture;
+  const contactName: string = req.body.name;
+  const contactEmail: string | undefined = req.body.email;
+  const contactPicture: string | undefined = req.body.picture;
 
   const result = await prisma.contact.create({
     data: {

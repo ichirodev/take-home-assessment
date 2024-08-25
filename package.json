@@ -7,21 +7,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "initialize": "node init.js"
   },
   "dependencies": {
-    "@ebay/nice-modal-react": "^1.2.13",
-    "@nextui-org/modal": "^2.0.39",
-    "@nextui-org/system": "^2.2.5",
-    "@nextui-org/theme": "^2.2.9",
     "@prisma/client": "^5.18.0",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-popover": "^1.1.1",
+    "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
-    "antd": "^5.20.2",
     "axios": "^1.7.5",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^2.4.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.30",
     "lucide-react": "^0.428.0",
@@ -30,7 +28,8 @@
     "react-dom": "^18",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@types/node": "^20.16.1",

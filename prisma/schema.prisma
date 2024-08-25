@@ -24,8 +24,8 @@ model Contact {
   id Int @id @default(autoincrement())
   owner User @relation(fields: [ownerId], references: [id])
   ownerId Int
-  email String? @unique
+  email String?
   name String
-  picture String
+  picture String?
   lastContact DateTime?
 }

@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ContactX",
+  title: "Demo Contacts App",
   description: "An app that helps you have your contacts close",
 };
 
